@@ -1,0 +1,44 @@
+import { getSingleProduct } from '@/action/server/service'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+
+const singleService = async ({ params }) => {
+  const { id } = await params
+  const service = await getSingleProduct(id)
+  console.log(service)
+const { image, title, _id, shortDescription, description, pricePerHour } =
+  service
+  return (
+    <div className="max-w-5xl mx-auto p-4">
+      <div className="flex   gap-6">
+        <div className="flex-1">
+          <Image src={image} alt={title} width={500} height={400}></Image>
+          <div className="">
+            <h1 className="">{title}</h1>
+            <p className="">{shortDescription}</p>
+            <p className="">{description}</p>
+            <p className="font-bold">
+              price: <span className='text-pink-600'>{pricePerHour}</span>taka
+            </p>
+          </div>
+        </div>
+        <div className="flex-1">
+          <div className="mt-4 space-y-3">
+            <h1 className="text-xl font-bold mt-2">Features:</h1>
+            <ul className="list-disc list-inside space-y-1">
+              {service.features.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <Link href={`/booking/${_id}`} className="btn btn-outline bg-green-700 text-white">
+              Book Now
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default singleService
