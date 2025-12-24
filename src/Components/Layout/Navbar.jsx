@@ -1,7 +1,8 @@
 import React from 'react';
 import Logo from './Logo';
 import NavLink from '../buttons/NavLink';
-import Link from 'next/link';
+
+import AuthButton from '../buttons/AuthButton';
 
 const Navbar = () => {
     const nav = (
@@ -53,12 +54,11 @@ const Navbar = () => {
             <Logo></Logo>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              {nav}
-            </ul>
+            <ul className="menu menu-horizontal px-1">{nav}</ul>
           </div>
           <div className="navbar-end">
-            <Link href={"/login"} className='btn btn-outline bg-green-500'>Login</Link>
+            {' '}
+            <AuthButton></AuthButton>
           </div>
         </div>
       </div>

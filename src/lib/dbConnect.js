@@ -3,7 +3,9 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const dbName = process.env.DB_name
 export const collection = {
     PRODUCTS: "products",
-    Service:"service"
+    Service: "service",
+    Users:"users"
+
 }
 const client = new MongoClient(uri, {
     serverApi: {

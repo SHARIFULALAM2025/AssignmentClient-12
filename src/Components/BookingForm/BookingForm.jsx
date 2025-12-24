@@ -1,16 +1,18 @@
 'use client'
-import { useRouter } from 'next/router'
+
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 const BookingForm = ({ LocationData, ServiceData }) => {
     const router = useRouter()
-    const { data: session } = useSession()
+    const {  data:session,status } = useSession()
     useEffect(() => {
-        if (!session) {
+        if (status==="authenticated") {
             router.push("/login")
         }
-    }, [session,router])
+    }, [status,router])
   const [selectedDivision, setSelectedDivision] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedCity, setSelectedCity] = useState('')
@@ -21,15 +23,16 @@ const BookingForm = ({ LocationData, ServiceData }) => {
   )
   const City = district.filter((item) => item.district === selectedDistrict)
   const Area = City.length ? City[0].covered_area : []
-  /*total cost calculation  */
+    /*total cost calculation  */
+      const [Duration, setDuration] = useState(1)
+      const [DurationType, setDurationType] = useState('Hours')
   const totalCost =
     DurationType === 'Hours'
       ? Duration * ServiceData.pricePerHour
       : Duration * 24 * ServiceData.pricePerHour
 
   /*  */
-  const [Duration, setDuration] = useState(1)
-  const [DurationType, setDurationType] = useState('Hours')
+
   /* collect form data using  react hook form */
   const { register, handleSubmit } = useForm()
   const handelBooking = (data) => {
@@ -44,7 +47,7 @@ const BookingForm = ({ LocationData, ServiceData }) => {
 
     const serviceInfo = {
       service_id: ServiceData._id,
-      user: session.user.email,
+      user: session?.user?.email,
       duration,
       durationType,
       city,

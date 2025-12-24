@@ -1,4 +1,4 @@
-export async function Get() {
+export async function GET() {
     return Response.json({
         message:"api running"
     })
