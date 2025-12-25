@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/Components/Layout/Navbar";
 import Footer from "@/Components/Layout/Footer";
 import NextAuthProvider from "@/provider/NextAuthProvider";
+import TanstackProvider from "@/provider/TanstackProvider";
 
  const poppins = Poppins({
 weight:["100","200","300","400","500","600","700","800"]
@@ -20,13 +21,15 @@ export default function RootLayout({ children }) {
     <NextAuthProvider>
       <html lang="en">
         <body className={`${poppins.className}  antialiased`}>
-          <header className="py-2 md:w-11/12 mx-auto">
-            <Navbar></Navbar>
-          </header>
-          <main className="py-2 md:w-11/12 mx-auto">{children}</main>
-          <footer className="py-2 md:w-11/12 mx-auto">
-            <Footer></Footer>
-          </footer>
+          <TanstackProvider>
+            <header className="py-2 md:w-11/12 mx-auto">
+              <Navbar></Navbar>
+            </header>
+            <main className="py-2 md:w-11/12 mx-auto">{children}</main>
+            <footer className="py-2 md:w-11/12 mx-auto">
+              <Footer></Footer>
+            </footer>
+          </TanstackProvider>
         </body>
       </html>
     </NextAuthProvider>

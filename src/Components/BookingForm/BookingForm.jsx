@@ -2,11 +2,13 @@
 
 import { postServiceData } from '@/action/server/auth'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 
 const BookingForm = ({ LocationData, ServiceData }) => {
+  const router=useRouter()
   const session = useSession()
   const [selectedDivision, setSelectedDivision] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
@@ -29,7 +31,7 @@ const BookingForm = ({ LocationData, ServiceData }) => {
   /*  */
 
   /* collect form data using  react hook form */
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit ,reset} = useForm()
   const handelBooking = async (data) => {
     const {
       area,
@@ -59,6 +61,8 @@ const BookingForm = ({ LocationData, ServiceData }) => {
     const result = await postServiceData(serviceInfo)
     if (!result.ok) {
       Swal.fire('success', 'data save', 'success')
+      router.push("/")
+      reset()
     } else {
       Swal.fire('error', 'data not save', 'error')
     }

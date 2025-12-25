@@ -1,12 +1,10 @@
-import ServiceCard from "@/Components/ServiceCard/ServiceCard";
-
-
-
 export default function Home() {
   return (
     <div className="">
       <section>
-        <ServiceCard></ServiceCard>
+        <div className="">
+          <h1 className="">this is home</h1>
+        </div>
       </section>
     </div>
   )

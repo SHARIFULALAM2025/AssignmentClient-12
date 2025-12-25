@@ -1,16 +1,22 @@
 "use client"
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const AuthButton = () => {
-    const session=useSession()
+  const session = useSession()
+  const router =useRouter()
     return (
       <div>
         {session.status == 'authenticated' ? (
           <>
             <button
-              onClick={() => signOut()}
+              onClick={() => {
+                signOut()
+                router.push("/")
+
+              }}
               className="btn btn-outline bg-green-400"
             >
               Log out

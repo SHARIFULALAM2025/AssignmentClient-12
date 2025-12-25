@@ -24,3 +24,23 @@ export const getSingleProduct = async (id) => {
 
     return { ...product, _id: product._id.toString() } || {};
 };
+export const myBooking = async(email) => {
+    const query = { user: email }
+    const myData = await dbConnect(collection.ServiceData).find(query).toArray()
+    return [ ...myData.map((item)=>({...item,_id:item._id.toString()})) ]
+}
+export const getSingleService = async (id) => {
+    if (id.length != 24) {
+        return {};
+    }
+    const query = { _id: new ObjectId(id) };
+
+    const result = await dbConnect(collection.ServiceData).deleteOne(query);
+    if (result.deletedCount===1) {
+        return {success:true,message:"delete successfully"}
+    } else {
+        return { success: false, message: "service not found" }
+    }
+
+
+};

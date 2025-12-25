@@ -19,7 +19,7 @@ const { image, title, _id, shortDescription, description, pricePerHour } =
             <p className="">{shortDescription}</p>
             <p className="">{description}</p>
             <p className="font-bold">
-              price: <span className='text-pink-600'>{pricePerHour}</span>taka
+              price: <span className="text-pink-600">{pricePerHour}</span>taka
             </p>
           </div>
         </div>
@@ -31,8 +31,11 @@ const { image, title, _id, shortDescription, description, pricePerHour } =
                 <li key={index}>{item}</li>
               ))}
             </ul>
-            <Link href={`/booking/${_id}`} className="btn btn-outline bg-green-700 text-white">
-              Book Now
+            <Link
+              href={`/booking/${_id}`}
+              className="btn btn-outline bg-green-700 text-white"
+            >
+              Book Service
             </Link>
           </div>
         </div>

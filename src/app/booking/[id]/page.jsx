@@ -1,16 +1,15 @@
 import { getService, getSingleProduct } from '@/action/server/service'
 import BookingForm from '@/Components/BookingForm/BookingForm'
-// import { authOptions } from '@/lib/authOption'
-// import { getServerSession } from 'next-auth'
-// import { redirect } from 'next/navigation'
+import { authOptions } from '@/lib/authOption'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
 
 const BookingPage = async ({ params }) => {
    const { id } = await params
-  // const session = await getServerSession(authOptions)
-  // if (!session) {
-  //   redirect("/login")
-  // }
-
+  const session = await getServerSession(authOptions)
+  if (!session) {
+    redirect("/login")
+  } 
 
   const cleanServiceData = await getSingleProduct(id)
   const ServiceData = {
