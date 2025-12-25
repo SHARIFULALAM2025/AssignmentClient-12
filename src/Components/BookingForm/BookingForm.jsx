@@ -1,18 +1,13 @@
 'use client'
 
+import { postServiceData } from '@/action/server/auth'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Swal from 'sweetalert2'
 
 const BookingForm = ({ LocationData, ServiceData }) => {
-    const router = useRouter()
-    const {  data:session,status } = useSession()
-    useEffect(() => {
-        if (status==="authenticated") {
-            router.push("/login")
-        }
-    }, [status,router])
+  const session = useSession()
   const [selectedDivision, setSelectedDivision] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedCity, setSelectedCity] = useState('')
@@ -23,9 +18,9 @@ const BookingForm = ({ LocationData, ServiceData }) => {
   )
   const City = district.filter((item) => item.district === selectedDistrict)
   const Area = City.length ? City[0].covered_area : []
-    /*total cost calculation  */
-      const [Duration, setDuration] = useState(1)
-      const [DurationType, setDurationType] = useState('Hours')
+  /*total cost calculation  */
+  const [Duration, setDuration] = useState(1)
+  const [DurationType, setDurationType] = useState('Hours')
   const totalCost =
     DurationType === 'Hours'
       ? Duration * ServiceData.pricePerHour
@@ -35,7 +30,7 @@ const BookingForm = ({ LocationData, ServiceData }) => {
 
   /* collect form data using  react hook form */
   const { register, handleSubmit } = useForm()
-  const handelBooking = (data) => {
+  const handelBooking = async (data) => {
     const {
       area,
       city,
@@ -47,7 +42,10 @@ const BookingForm = ({ LocationData, ServiceData }) => {
 
     const serviceInfo = {
       service_id: ServiceData._id,
-      user: session?.user?.email,
+      image: ServiceData.image,
+      title: ServiceData.title,
+      price:ServiceData.pricePerHour,
+      user: session.data?.user?.email,
       duration,
       durationType,
       city,
@@ -57,13 +55,15 @@ const BookingForm = ({ LocationData, ServiceData }) => {
       totalCost,
       status: 'Pending',
       createAt: new Date().toISOString(),
-      }
-      console.log(serviceInfo)
+    }
+    const result = await postServiceData(serviceInfo)
+    if (!result.ok) {
+      Swal.fire('success', 'data save', 'success')
+    } else {
+      Swal.fire('error', 'data not save', 'error')
+    }
+  }
 
-  }
-  if (!ServiceData) {
-    return <p> service not found...</p>
-  }
   return (
     <form onSubmit={handleSubmit(handelBooking)} className="space-y-3">
       <div className="grid grid-cols-3">

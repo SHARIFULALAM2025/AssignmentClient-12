@@ -39,3 +39,42 @@ export const loginUser = async (payload) => {
         return null
     }
 }
+export const postServiceData = async (payload) => {
+    const { duration,
+        service_id,
+        user,
+        image,
+        title,
+        price,
+        status,
+        createAt,
+        durationType,
+        city,
+        area,
+        selectDistrict,
+        selectDivision,
+        totalCost, } = payload
+    const dataInfo = {
+        duration,
+        service_id,
+        image,
+        title,
+        price,
+        user,
+        status,
+        createAt,
+        durationType,
+        city,
+        area,
+        selectDistrict,
+        selectDivision,
+        totalCost,
+    }
+
+    const result = await dbConnect(collection.ServiceData).insertOne(dataInfo)
+    if (result.acknowledged) {
+        return { ...result, insertedId: result.insertedId.toString() }
+
+    }
+
+}
