@@ -1,10 +1,10 @@
+import Carousel from "@/Components/Carousel/Carousel";
+
 export default function Home() {
   return (
     <div className="">
       <section>
-        <div className="">
-          <h1 className="">this is home</h1>
-        </div>
+        <Carousel></Carousel>
       </section>
     </div>
   )
