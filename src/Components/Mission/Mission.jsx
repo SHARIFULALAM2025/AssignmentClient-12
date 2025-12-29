@@ -14,7 +14,7 @@ const Mission = () => {
             With Trust, Compassion & Connection
           </h2>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-3 gap-3">
           {/* Left Content */}
 
           <div className="lg:col-span-1">

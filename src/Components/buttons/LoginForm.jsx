@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   }
   return (
-    <div className="flex justify-between items-center">
+    <div className="md:flex justify-between items-center">
       <div className="flex-1">
         <Image
           src="https://i.ibb.co.com/spCdnY8H/muhammad-noor-ridho-PSu-Fzu-Bs-KMU-unsplash.jpg"

@@ -9,7 +9,7 @@ const ServiceCard =async () => {
     return (
       <div>
         <h1 className="text-center font-bold text-4xl">our services</h1>
-        <div className="grid grid-cols-4 gap-2">{service.map((item,index)=><Card key={index} item={item} ></Card>)}</div>
+        <div className="grid md:grid-cols-4 gap-2">{service.map((item,index)=><Card key={index} item={item} ></Card>)}</div>
       </div>
     )
 };

@@ -85,12 +85,25 @@ const Testimonial = () => {
           }}
           modules={[FreeMode, Pagination, Autoplay]}
           className="mySwiper"
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            650: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
         >
           {FeedBack.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="h-64  bg-gray-200 rounded-xl p-5 relative">
                 <div className="">
-                 
                   <p className="text-black text-2xl font-bold">{item.des}</p>
                 </div>
                 <div className="flex items-center absolute right-0 gap-2 ">

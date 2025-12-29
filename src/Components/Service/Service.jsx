@@ -13,7 +13,7 @@ const Service =async () => {
     return (
         <div className="">
             <h1 className="text-center font-bold md:mb-3 md:text-4xl">service overview</h1>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-3 gap-3">
           {filterData.map((item, index) => (
             <div key={index} className="card bg-base-100  shadow-sm">
               <figure>
