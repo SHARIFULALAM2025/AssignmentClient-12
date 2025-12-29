@@ -1,6 +1,8 @@
 "use server"
 
 import { collection, dbConnect } from "@/lib/dbConnect"
+import { orderInvoice } from "@/lib/orderInvoice"
+import { sendEmail } from "@/lib/sendEmail"
 import bcrypt from "bcryptjs"
 export const postUser = async (payload) => {
     const { email, password, contact, number, name } = payload
@@ -73,8 +75,26 @@ export const postServiceData = async (payload) => {
 
     const result = await dbConnect(collection.ServiceData).insertOne(dataInfo)
     if (result.acknowledged) {
+        await sendEmail({
+            to: user,
+            subject: "your service booking invoice",
+            html: orderInvoice({duration,
+                service_id,
+                image,
+                title,
+                status,
+                durationType,
+                city,
+                area,
+                selectDistrict,
+                selectDivision,
+                totalCost})
+        })
         return { ...result, insertedId: result.insertedId.toString() }
 
     }
 
+
+
 }
+
