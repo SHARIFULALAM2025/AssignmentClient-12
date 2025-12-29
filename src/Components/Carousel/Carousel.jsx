@@ -85,6 +85,7 @@ const Carousel = () => {
                     fill
                     alt="careImage"
                     className="object-cover rounded"
+                    
                   />
                   <div className="absolute top-1/2">
                     {' '}
