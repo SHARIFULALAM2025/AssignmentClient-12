@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc'
 
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { signIn } from 'next-auth/react'
 
 const RegisterForm = () => {
   const router = useRouter()
@@ -18,6 +19,12 @@ const RegisterForm = () => {
       router.push('/login')
     }
   }
+  const handelGoogle = async () => {
+      const result = await signIn('google', {
+        callbackUrl:"/"
+      })
+
+    }
   return (
     <div className="md:flex justify-between items-center">
       <div className="flex-1">
@@ -91,9 +98,10 @@ const RegisterForm = () => {
               className="btn btn-outline bg-blue-600 text-white w-full md:w-1/2"
             >
               register
-            </button><br></br>
+            </button>
+            <br></br>
             <button
-              type="submit"
+              onClick={handelGoogle}
               className="btn btn-outline bg-black text-white w-full md:w-1/2"
             >
               <FcGoogle></FcGoogle>

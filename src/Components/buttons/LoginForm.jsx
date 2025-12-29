@@ -25,6 +25,12 @@ const LoginForm = () => {
       router.push('/')
     }
   }
+  const handelGoogle = async () => {
+    const result = await signIn('google', {
+      callbackUrl:"/"
+    })
+
+  }
   return (
     <div className="flex justify-between items-center">
       <div className="flex-1">
@@ -65,9 +71,10 @@ const LoginForm = () => {
               className="btn btn-outline text-white bg-blue-600 w-full md:w-1/2"
             >
               Login
-            </button><br></br>
+            </button>
+            <br></br>
             <button
-              type="submit"
+              onClick={handelGoogle}
               className="btn btn-outline bg-black text-white w-full md:w-1/2"
             >
               <FcGoogle></FcGoogle>
