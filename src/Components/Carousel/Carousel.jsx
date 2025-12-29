@@ -24,7 +24,7 @@ const Carousel = () => {
       title: 'Will Smith ',
       image:
         'https://i.ibb.co.com/ks0F4Hjb/valentin-fernandez-vf-N7r6-Jg2-WU-unsplash.jpg',
-      des: 'Product Designer',
+      des: 'medicine doctor',
     },
     {
       title: 'Tom Cruise ',
@@ -42,7 +42,7 @@ const Carousel = () => {
       title: 'Will Smith ',
       image:
         'https://i.ibb.co.com/nNMf8ZDj/julia-taubitz-v-N5s-G5-SPk-Y-unsplash.jpg',
-      des: 'Product Designer',
+      des: ' spatial doctor',
     },
   ]
   return (
