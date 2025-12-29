@@ -1,16 +1,18 @@
 import GoogleProvider from "next-auth/providers/google";
 import { loginUser } from "@/action/server/auth";
 import CredentialsProvider from "next-auth/providers/credentials"
+
+import { collection, dbConnect } from "./dbConnect";
+
 export const authOptions = {
-    // Configure one or more authentication providers
+
     providers: [
         CredentialsProvider({
 
             name: 'Credentials',
 
             credentials: {
-                // username: { label: "Username", type: "text", placeholder: "jsmith" },
-                // password: { label: "Password", type: "password" }
+
             },
             async authorize(credentials, req) {
                 const user = await loginUser(credentials)
@@ -24,7 +26,34 @@ export const authOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
         }),
 
+
     ],
-    secret:process.env.NEXTAUTH_SECRET
+    callbacks: {
+        async signIn({ user, account }) {
+            const userCollection =  dbConnect(collection.Users)
+            const isExist = await userCollection.findOne({ email: user.email, provider: account?.provider })
+            const newUser = {
+                provider: account?.provider,
+                email: user.email,
+                createAt: new Date(),
+                image: user.image,
+                name: user.name,
+                role: "user"
+
+            }
+
+            if (isExist) {
+                return true
+            }
+
+            if (!isExist) {
+                await userCollection.insertOne(newUser)
+            }
+            return true
+        },
+
+
+    },
+    secret: process.env.NEXTAUTH_SECRET
 }
 

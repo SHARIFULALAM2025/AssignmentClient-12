@@ -27,8 +27,11 @@ const LoginForm = () => {
   }
   const handelGoogle = async () => {
     const result = await signIn('google', {
+
+
       callbackUrl:"/"
     })
+    console.log(result)
 
   }
   return (
