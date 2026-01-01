@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### Project Name:Care.xyz
 
-First, run the development server:
+📌 Project Description
+Care.xyz is a trusted caregiving web application that helps users find and book reliable care services for children, elderly, and sick family members. The platform allows users to easily hire caretakers based on their preferred time duration and location.
+The main goal of Care.xyz is to make caregiving easy, secure, and accessible for everyone.
 
-```bash
+
+Key Features
+·       Responsive Design: Mobile, tablet, and desktop supported
+·       User Authentication: Email & Password, Google Social Login
+·       Dynamic Booking: Duration, Location (Division, District, City, Area), Address input
+·       Total Cost Calculation: Automatically calculate based on duration × service charge
+·       Booking Status: Pending / Confirmed / Completed
+·       My Booking Page: Users can track their bookings and status
+·       Services Overview: Baby Care, Elderly Service, Sick People Service
+·       Service Detail Pages: Individual page for each service with details and Book Service button
+
+🛠️ Technologies Used
+### Frontend
+
+Next.js 16 (App Router)
+
+React 19
+
+Tailwind CSS
+
+DaisyUI
+
+Swiper.js
+
+React Icons
+
+React Hook Form
+
+### Backend & Services
+
+NextAuth.js (Authentication)
+
+MongoDB
+
+React Query (TanStack Query)
+
+Nodemailer (Email notifications)
+
+bcryptjs (Password hashing)
+
+📦 Dependencies Used
+next
+react
+react-dom
+next-auth
+mongodb
+@tanstack/react-query
+react-hook-form
+bcryptjs
+nodemailer
+sweetalert2
+swiper
+react-icons
+react-spinners
+daisyui
+tailwindcss
+🧑‍💻 How to Run the Project Locally
+### Clone the Repository
+
+
+https://github.com/SHARIFULALAM2025/AssignmentClient-12.git
+
+
+### Install Dependencies
+
+npm install
+
+### Environment Variables Setup
+
+Create a .env.local file in the root directory:
+example:
+NEXTAUTH_SECRET=your_secret
+NEXTAUTH_URL=http://localhost:3000
+
+MONGODB_URI=your_mongodb_connection_string
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+EMAIL_USER=your_email
+EMAIL_PASS=your_email_password
+### Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Build for Production
+npm run build
+npm start
+### project live link: https://old-care.vercel.app
